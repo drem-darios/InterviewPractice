@@ -7,28 +7,28 @@ public class PalindromePermutation {
     }
 
     public static boolean isPalindromePermutation(String input) {
-            Map<Character, Integer> charCount = new HashMap<Character, Integer>();
+            Map<Character, Integer> charCount = new HashMap<Character, Integer>(); // Store count of characters
             int oddCount = 0;
             for (int i = 0; i < input.length(); i++) {
-                char c = Character.toLowerCase(input.charAt(i));
+                char c = Character.toLowerCase(input.charAt(i)); // Ignore case
                 if (c == ' ') {
                     continue; // igonre spaces
                 }
-                Integer count = charCount.get(c); // ignore case
+                Integer count = charCount.get(c);
                 if (count == null) {
                     charCount.put(c, 1);
-                    oddCount++;
+                    oddCount++; // First time seeing this character means count is odd
                 } else {
-                    count++;
+                    count++; // Increase times we have seen this character
                     charCount.put(c, count);
                     if (count %2 == 0) {
-                        oddCount--;
+                        oddCount--; // if a pair is found, decrease the number of odds
                     } else {
-                        oddCount++;
+                        oddCount++; // if pair is not found, increase number of odds
                     }
                 }
             }
 
-            return oddCount <= 1;
+            return oddCount <= 1; // There can be at most 1 odd
     }
 }
